@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from 'react';
 
 const DISCOVERY_DOCS = [
   'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
@@ -6,39 +13,81 @@ const DISCOVERY_DOCS = [
 
 const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
-const GDriveContext = createContext({ auth: false });
+const GDriveContext = createContext({ auth: false, togglePicker: () => null });
+
+function GDrivePicker({ accessToken, visible }) {
+  const picker = useMemo(
+    () =>
+      new google.picker.PickerBuilder()
+        .addView(
+          new google.picker.DocsView()
+            .setIncludeFolders(true)
+            .setSelectFolderEnabled(true),
+        )
+        .setOAuthToken(accessToken)
+        .build(),
+    [accessToken],
+  );
+
+  useEffect(() => () => picker.setVisible(false), []);
+
+  useEffect(() => {
+    if (picker) {
+      picker.setVisible(visible);
+    }
+  }, [visible, picker]);
+
+  return null;
+}
 
 function GDriveContextProvider({ children }) {
-  const [auth, setAuth] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
+  const [pickerLoaded, setPickerLoaded] = useState(false);
+  const [showPicker, togglePicker] = useReducer(() => !showPicker, false);
+  const auth = useMemo(() => !!authUser, [authUser]);
+  const accessToken = useMemo(
+    () => (authUser ? authUser.getAuthResponse().access_token : null),
+    [authUser],
+  );
+
+  // useEffect(() => {
+  //   if (auth && showPicker && pickerLoaded) {
+  //     const picker = new google.picker.PickerBuilder()
+  //       .addView(google.picker.ViewId.FOLDERS)
+  //       .setOAuthToken(accessToken)
+  //       .build();
+  //     picker.setVisible(true);
+  //   }
+  // }, [showPicker, auth, accessToken, pickerLoaded]);
 
   function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-      setAuth(true);
+      setAuthUser(gapi.auth2.getAuthInstance().currentUser.get());
     } else {
       gapi.auth2.getAuthInstance().signIn();
     }
   }
 
-  function listFiles() {
-    gapi.client.drive.files
-      .list({
-        pageSize: 10,
-        fields: 'nextPageToken, files(id, name)',
-      })
-      .then(function (response) {
-        console.log(response);
-        // appendPre('Files:');
-        // var files = response.result.files;
-        // if (files && files.length > 0) {
-        //   for (var i = 0; i < files.length; i++) {
-        //     var file = files[i];
-        //     appendPre(file.name + ' (' + file.id + ')');
-        //   }
-        // } else {
-        //   appendPre('No files found.');
-        // }
-      });
-  }
+  // function listFiles() {
+  //   gapi.client.drive.files
+  //     .list({
+  //       pageSize: 10,
+  //       fields: 'nextPageToken, files(id, name)',
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //       // appendPre('Files:');
+  //       // var files = response.result.files;
+  //       // if (files && files.length > 0) {
+  //       //   for (var i = 0; i < files.length; i++) {
+  //       //     var file = files[i];
+  //       //     appendPre(file.name + ' (' + file.id + ')');
+  //       //   }
+  //       // } else {
+  //       //   appendPre('No files found.');
+  //       // }
+  //     });
+  // }
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -72,18 +121,27 @@ function GDriveContextProvider({ children }) {
             },
           );
       });
+      gapi.load('picker', () => {
+        // pickerApiLoaded = true;
+        setPickerLoaded(true);
+        // createPicker();
+      });
     };
     document.body.appendChild(script);
   }, []);
 
   return (
-    <GDriveContext.Provider value={{ auth }}>{children}</GDriveContext.Provider>
+    <GDriveContext.Provider value={{ auth, togglePicker }}>
+      {auth && <GDrivePicker accessToken={accessToken} visible={showPicker} />}
+
+      {children}
+    </GDriveContext.Provider>
   );
 }
 
-function useAuth() {
+function useGDrive() {
   return useContext(GDriveContext);
 }
 
 export default GDriveContext;
-export { GDriveContextProvider, useAuth };
+export { GDriveContextProvider, useGDrive };
