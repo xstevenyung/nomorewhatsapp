@@ -13,9 +13,12 @@ const DISCOVERY_DOCS = [
 
 const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
-const GDriveContext = createContext({ auth: false, togglePicker: () => null });
+const GDriveContext = createContext({
+  auth: false,
+  togglePicker: () => null,
+});
 
-function GDrivePicker({ accessToken, visible }) {
+function GDrivePicker({ accessToken, visible, onPick: handlePick }) {
   const picker = useMemo(
     () =>
       new google.picker.PickerBuilder()
@@ -25,6 +28,11 @@ function GDrivePicker({ accessToken, visible }) {
             .setSelectFolderEnabled(true),
         )
         .setOAuthToken(accessToken)
+        .setCallback(({ action, docs }) => {
+          if (action === 'picked') {
+            handlePick(docs);
+          }
+        })
         .build(),
     [accessToken],
   );
@@ -132,7 +140,13 @@ function GDriveContextProvider({ children }) {
 
   return (
     <GDriveContext.Provider value={{ auth, togglePicker }}>
-      {auth && <GDrivePicker accessToken={accessToken} visible={showPicker} />}
+      {auth && (
+        <GDrivePicker
+          accessToken={accessToken}
+          visible={showPicker}
+          onPick={console.log}
+        />
+      )}
 
       {children}
     </GDriveContext.Provider>
