@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
   useState,
@@ -108,8 +109,20 @@ function SelectMeForm({ participants, onSelect: handleSelect }) {
   );
 }
 
-export default function ChatContent({ attachments, messages, participants }) {
+export default function ChatContent({
+  name,
+  attachments,
+  messages,
+  participants,
+}) {
   const [me, setMe] = useState(null);
+
+  // We reset me on different conversation if the name is unfound
+  useEffect(() => {
+    if (!participants.includes(me)) {
+      setMe(null);
+    }
+  }, [name]);
 
   if (!messages) return <p>Loading...</p>;
 
