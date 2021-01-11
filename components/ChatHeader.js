@@ -1,12 +1,12 @@
-export default function ConversationHeader() {
+export default function ConversationHeader({ name }) {
   return (
     <div className="flex flex-row items-center py-4 px-6 rounded-2xl shadow">
       <div className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-100">
-        T
+        {name.charAt(0)}
       </div>
       <div className="flex flex-col ml-3">
-        <div className="font-semibold text-sm">UI Art Design</div>
-        <div className="text-xs text-gray-500">Active</div>
+        <div className="font-semibold text-sm">{name}</div>
+        {/* <div className="text-xs text-gray-500">Active</div> */}
       </div>
       <div className="ml-auto">
         <ul className="flex flex-row items-center space-x-2">

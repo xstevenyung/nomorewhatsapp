@@ -10,10 +10,15 @@
   "prettier": "@recodable/prettier-config",
   "dependencies": {
     "autoprefixer": "^10.2.1",
+    "lodash.groupby": "^4.6.0",
     "next": "10.0.5",
     "postcss": "^8.2.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-dropzone": "^11.2.4",
+    "react-virtualized": "^9.22.3",
+    "react-virtualized-auto-sizer": "^1.0.3",
+    "react-window": "^1.8.6",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {

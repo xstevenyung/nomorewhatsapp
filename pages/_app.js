@@ -1,12 +1,7 @@
 import '../styles/globals.css';
-import { GDriveContextProvider } from '../components/GDriveContext';
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <GDriveContextProvider>
-      <Component {...pageProps} />
-    </GDriveContextProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
