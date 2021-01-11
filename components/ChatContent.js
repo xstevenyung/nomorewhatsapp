@@ -1,16 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { AutoSizer } from 'react-virtualized';
-import { VariableSizeList as List } from 'react-window';
+import { Virtuoso } from 'react-virtuoso';
 
-export function Message({ data, index, style }) {
+export function Message({ content }) {
   return (
-    <div style={style} className="col-start-1 col-end-8 p-3 rounded-lg">
+    <div className="col-start-1 col-end-8 p-3 rounded-lg">
       <div className="flex flex-row items-center">
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
           A
         </div>
         <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-          <div>{data[index].content}</div>
+          <div>{content}</div>
         </div>
       </div>
     </div>
@@ -18,34 +16,18 @@ export function Message({ data, index, style }) {
 }
 
 export default function ChatContent({ messages }) {
-  const listRef = useRef();
-
-  useEffect(() => {
-    if (messages) {
-      listRef.current.scrollToItem(messages.length - 1);
-    }
-  }, [messages]);
-
-  if (!messages) return null;
+  if (!messages) return <p>Loading...</p>;
 
   return (
-    <AutoSizer>
-      {({ height, width }) => (
-        <List
-          ref={listRef}
-          height={height}
-          itemCount={messages.length}
-          itemData={messages}
-          itemSize={(index) => 64}
-          width={width}
-          estimatedItemSize={64}
-        >
-          {Message}
-        </List>
-      )}
-    </AutoSizer>
+    <Virtuoso
+      style={{ height: '100%' }}
+      totalCount={messages.length}
+      initialTopMostItemIndex={messages.length - 1}
+      itemContent={(index) => <Message {...messages[index]} />}
+    />
   );
 }
+
 // export default function ConversationContent({ messages }) {
 //   return (
 //     <div className="h-full overflow-hidden py-4">
