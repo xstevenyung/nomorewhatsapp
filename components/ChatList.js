@@ -1,28 +1,34 @@
-function ChatItem({ name }) {
+function ChatItem({ name, active }) {
   return (
-    <div className="flex flex-row items-center p-4 relative">
-      {/* <div className="absolute text-xs text-gray-500 right-0 top-0 mr-4 mt-3">
-        2 hours ago
-      </div> */}
-      <div className="uppercase flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+    <div
+      className={`flex flex-row items-center p-4 border-l-2 ${
+        active
+          ? 'border-red-500 bg-gradient-to-r from-red-100 to-transparent'
+          : 'border-transparent'
+      }`}
+    >
+      <div className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0 uppercase">
         {name.charAt(0)}
       </div>
       <div className="flex flex-col flex-grow ml-3">
-        <div className="text-sm font-medium">{name}</div>
+        <div className="flex items-center">
+          <div className="text-sm font-medium">{name}</div>
+          {/* <div className="h-2 w-2 rounded-full bg-green-500 ml-2"></div> */}
+        </div>
         {/* <div className="text-xs truncate w-40">
-          Good after noon! how can i help you?
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis,
+          doloribus?
         </div> */}
       </div>
-      {/* <div className="flex-shrink-0 ml-2 self-end mb-1">
-        <span className="flex items-center justify-center h-5 w-5 bg-red-500 text-white text-xs rounded-full">
-          3
-        </span>
-      </div> */}
     </div>
   );
 }
 
-export default function ChatList({ chats }) {
+export default function ChatList({
+  chats,
+  selectedChatIndex,
+  onChange: handleChange,
+}) {
   return (
     <div className="flex flex-col w-full h-full pl-4 pr-4 py-4 -mr-4">
       <div className="flex flex-row items-center">
@@ -85,10 +91,20 @@ export default function ChatList({ chats }) {
           Personal
         </div>
       </div> */}
-      <div className="h-full overflow-hidden relative pt-2">
+      <div className="h-full relative pt-2">
         <div className="flex flex-col divide-y h-full overflow-y-auto -mx-4">
-          {chats.map(({ name }) => (
-            <ChatItem key={name} name={name} />
+          {chats.map(({ name }, index) => (
+            <button
+              className="focus:outline-none"
+              type="button"
+              onClick={() => handleChange(index)}
+            >
+              <ChatItem
+                key={name}
+                name={name}
+                active={index === selectedChatIndex}
+              />
+            </button>
           ))}
           {/* <div className="flex flex-row items-center p-4">
             <div className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
