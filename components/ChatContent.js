@@ -1,6 +1,49 @@
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useReducer,
+  useState,
+} from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
+const AttachmentContext = createContext([]);
+
 export function Message({ authorName, content }) {
+  const attachments = useContext(AttachmentContext);
+
+  const [images, addImage] = useReducer((state, image) => {
+    return [...state, image];
+  }, []);
+
+  const [videos, addVideo] = useReducer((state, video) => {
+    return [...state, video];
+  }, []);
+
+  const text = useMemo(() => {
+    const regex = /\<attached: (.+)\>/;
+    const [, fileName] = regex.exec(content) || [];
+    const file = attachments.find((file) => file.name === fileName);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', (event) => {
+        const { result } = event.target;
+
+        if (result.match(/^data:video/)) {
+          return addVideo(result);
+        }
+
+        if (result.match(/^data:image/)) {
+          return addImage(result);
+        }
+      });
+      reader.readAsDataURL(file);
+    }
+
+    return content.replace(/\<attached: (.+)\>/, '');
+  }, []);
+
   return (
     <div className="col-start-1 col-end-8 p-3 rounded-lg">
       <div className="flex flex-row items-center">
@@ -10,23 +53,37 @@ export function Message({ authorName, content }) {
 
         <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
           <div className="font-bold">{authorName}</div>
-          <div>{content}</div>
+
+          {!!text && <div>{text}</div>}
+
+          {images.map((image) => (
+            <img src={image} />
+          ))}
+
+          {videos.map((video) => (
+            <video controls width="250">
+              <source src={video} type="video/mp4" />
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-export default function ChatContent({ messages }) {
+export default function ChatContent({ attachments, messages }) {
   if (!messages) return <p>Loading...</p>;
 
   return (
-    <Virtuoso
-      style={{ height: '100%' }}
-      totalCount={messages.length}
-      initialTopMostItemIndex={messages.length - 1}
-      itemContent={(index) => <Message {...messages[index]} />}
-    />
+    <AttachmentContext.Provider value={attachments}>
+      <Virtuoso
+        style={{ height: '100%' }}
+        totalCount={messages.length}
+        initialTopMostItemIndex={messages.length - 1}
+        itemContent={(index) => <Message {...messages[index]} />}
+      />
+    </AttachmentContext.Provider>
   );
 }
 

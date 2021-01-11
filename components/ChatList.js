@@ -10,6 +10,7 @@ function ChatItem({ name, active }) {
       <div className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0 uppercase">
         {name.charAt(0)}
       </div>
+
       <div className="flex flex-col flex-grow ml-3">
         <div className="flex items-center">
           <div className="text-sm font-medium">{name}</div>
