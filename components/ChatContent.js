@@ -7,10 +7,10 @@ import {
 } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
-const AttachmentContext = createContext([]);
+const ChatContext = createContext({ attachments: [] });
 
 export function Message({ authorName, content }) {
-  const attachments = useContext(AttachmentContext);
+  const { attachments, me } = useContext(ChatContext);
 
   const [images, addImage] = useReducer((state, image) => {
     return [...state, image];
@@ -44,14 +44,28 @@ export function Message({ authorName, content }) {
     return content.replace(/\<attached: (.+)\>/, '');
   }, []);
 
+  const fromMe = me === authorName;
+
   return (
-    <div className="col-start-1 col-end-8 p-3 rounded-lg">
-      <div className="flex flex-row items-center">
+    <div
+      className={`${
+        fromMe ? 'col-start-6 col-end-13' : 'col-start-1 col-end-8'
+      } p-3 rounded-lg`}
+    >
+      <div
+        className={`flex items-center ${
+          fromMe ? 'justify-start flex-row-reverse' : 'flex-row '
+        }`}
+      >
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0 uppercase">
           {authorName.charAt(0)}
         </div>
 
-        <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+        <div
+          className={`relative mx-3 text-sm py-2 px-4 shadow rounded-xl ${
+            fromMe ? 'bg-indigo-100' : 'bg-white'
+          }`}
+        >
           <div className="font-bold">{authorName}</div>
 
           {!!text && <div>{text}</div>}
@@ -61,7 +75,7 @@ export function Message({ authorName, content }) {
           ))}
 
           {videos.map((video) => (
-            <video controls width="250">
+            <video controls>
               <source src={video} type="video/mp4" />
               Sorry, your browser doesn't support embedded videos.
             </video>
@@ -72,18 +86,51 @@ export function Message({ authorName, content }) {
   );
 }
 
-export default function ChatContent({ attachments, messages }) {
+function SelectMeForm({ participants, onSelect: handleSelect }) {
+  const [me, setMe] = useState(participants[0]);
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSelect(me);
+      }}
+    >
+      <select onChange={(e) => setMe(e.target.value)}>
+        {participants.map((participant) => (
+          <option key={participant} value={participant}>
+            {participant}
+          </option>
+        ))}
+      </select>
+
+      <button type="submit">Ok</button>
+    </form>
+  );
+}
+
+export default function ChatContent({ attachments, messages, participants }) {
+  const [me, setMe] = useState(null);
+
   if (!messages) return <p>Loading...</p>;
 
+  if (!me)
+    return (
+      <div className="h-full w-full flex flex-col justify-center items-center">
+        <p>Who are you in the conversation?</p>
+
+        <SelectMeForm participants={participants} onSelect={setMe} />
+      </div>
+    );
+
   return (
-    <AttachmentContext.Provider value={attachments}>
+    <ChatContext.Provider value={{ attachments, me }}>
       <Virtuoso
         style={{ height: '100%' }}
         totalCount={messages.length}
         initialTopMostItemIndex={messages.length - 1}
         itemContent={(index) => <Message {...messages[index]} />}
       />
-    </AttachmentContext.Provider>
+    </ChatContext.Provider>
   );
 }
 

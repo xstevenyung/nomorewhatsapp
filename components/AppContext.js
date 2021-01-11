@@ -34,6 +34,7 @@ const reducer = (state, { type, payload }) => {
         messages: null,
         file: chatFile,
         attachments: attachmentFiles,
+        participants: [],
       };
 
       return chat;
@@ -57,6 +58,10 @@ const reducer = (state, { type, payload }) => {
         ) || [null, prevMessage.createdAt, prevMessage.authorName, line];
 
         prevMessage = { createdAt, authorName, content };
+
+        if (!loadedChat.participants.includes(authorName)) {
+          loadedChat.participants.push(authorName);
+        }
 
         return { createdAt, authorName, content };
       })
