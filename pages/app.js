@@ -39,7 +39,7 @@ function Application() {
         <ChatList chats={chats} />
       </div>
 
-      <div className="flex flex-col h-full w-full bg-white px-4 py-6">
+      <div className="flex flex-col h-full w-full bg-white px-4 pt-6 relative">
         {!!selectedChat && <Chat {...selectedChat} />}
       </div>
     </div>

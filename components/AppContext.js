@@ -45,11 +45,22 @@ const reducer = (state, { type, payload }) => {
   if (type === LOAD_CHAT) {
     const { chat: loadedChat, data } = payload;
 
-    loadedChat.messages = data.split('\n').map((line) => {
-      const [, createdAt, authorName, content] =
-        line.match(/(\[.+\]) ([\w ]+)\: (.+)/) || [];
-      return { createdAt, authorName, content };
-    });
+    // We store data of previous message to be able to handle multiline messages
+    let prevMessage;
+    loadedChat.messages = data
+      .split('\n')
+      .map((line, index) => {
+        if (index === 0 || !line) return null;
+
+        const [, createdAt, authorName, content] = line.match(
+          /(\[.+\]) ([\w ]+)\: (.+)/,
+        ) || [null, prevMessage.createdAt, prevMessage.authorName, line];
+
+        prevMessage = { createdAt, authorName, content };
+
+        return { createdAt, authorName, content };
+      })
+      .filter((v) => v);
 
     const index = state.findIndex((chat) => chat.name === loadedChat.name);
 
