@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import groupBy from 'lodash.groupby';
 
 const AppContext = createContext({});
@@ -54,7 +48,7 @@ const reducer = (state, { type, payload }) => {
         if (index === 0 || !line) return null;
 
         const [, createdAt, authorName, content] = line.match(
-          /(\[.+\]) ([\w ]+)\: (.+)/,
+          /(\[.+\]) (.+)(?:(?:\:)(?![^<]*\>)) (.+)/,
         ) || [null, prevMessage.createdAt, prevMessage.authorName, line];
 
         prevMessage = { createdAt, authorName, content };
