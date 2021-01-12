@@ -43,7 +43,7 @@ function Application() {
         />
       </div>
 
-      <div className="flex flex-col h-full w-full bg-white px-4 pt-6 relative">
+      <div className="flex flex-col h-full w-full bg-white px-4 pt-24 relative">
         {!!selectedChat && <Chat {...selectedChat} />}
       </div>
     </div>

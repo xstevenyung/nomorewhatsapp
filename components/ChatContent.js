@@ -4,43 +4,48 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useRef,
   useState,
 } from 'react';
 import { Virtuoso } from 'react-virtuoso';
+import Linkify from 'react-linkify';
 
 const ChatContext = createContext({ attachments: [] });
 
 export function Message({ authorName, content }) {
   const { attachments, me } = useContext(ChatContext);
+  const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null);
 
-  const [images, addImage] = useReducer((state, image) => {
-    return [...state, image];
-  }, []);
+  const [file, setFile] = useState(null);
 
-  const [videos, addVideo] = useReducer((state, video) => {
-    return [...state, video];
-  }, []);
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', (event) => {
+        const { result } = event.target;
+
+        if (result.match(/^data:video/)) {
+          return setVideo(result);
+        }
+
+        if (result.match(/^data:image/)) {
+          return setImage(result);
+        }
+      });
+      reader.readAsDataURL(file);
+
+      return () => reader.abort();
+    }
+  }, [file]);
 
   const text = useMemo(() => {
     const regex = /\<attached: (.+)\>/;
     const [, fileName] = regex.exec(content) || [];
     const file = attachments.find((file) => file.name === fileName);
 
-    if (file) {
-      const reader = new FileReader();
-      reader.addEventListener('load', (event) => {
-        const { result } = event.target;
-
-        if (result.match(/^data:video/)) {
-          return addVideo(result);
-        }
-
-        if (result.match(/^data:image/)) {
-          return addImage(result);
-        }
-      });
-      reader.readAsDataURL(file);
-    }
+    setFile(file);
 
     return content.replace(/\<attached: (.+)\>/, '');
   }, []);
@@ -69,18 +74,21 @@ export function Message({ authorName, content }) {
         >
           <div className="font-bold">{authorName}</div>
 
-          {!!text && <div>{text}</div>}
+          {!!text && <Linkify>{text}</Linkify>}
 
-          {images.map((image) => (
-            <img src={image} />
-          ))}
+          {!!image && (
+            <div
+              style={{ backgroundImage: `url(${image})` }}
+              className="bg-cover w-80 h-80"
+            />
+          )}
 
-          {videos.map((video) => (
+          {/* {videos.map((video) => (
             <video controls>
               <source src={video} type="video/mp4" />
               Sorry, your browser doesn't support embedded videos.
             </video>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
@@ -140,7 +148,6 @@ export default function ChatContent({
       <Virtuoso
         style={{ height: '100%' }}
         totalCount={messages.length}
-        initialTopMostItemIndex={messages.length - 1}
         itemContent={(index) => <Message {...messages[index]} />}
       />
     </ChatContext.Provider>

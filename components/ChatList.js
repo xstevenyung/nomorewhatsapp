@@ -96,6 +96,7 @@ export default function ChatList({
         <div className="flex flex-col divide-y h-full overflow-y-auto -mx-4">
           {chats.map(({ name }, index) => (
             <button
+              key={name}
               className="focus:outline-none"
               type="button"
               onClick={() => handleChange(index)}
