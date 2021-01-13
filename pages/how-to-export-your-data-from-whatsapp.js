@@ -8,21 +8,22 @@ export default function ExportTuto() {
       <div className="px-4 mx-auto py-20">
         <div className="mb-8">
           <Breadcrumb
-            items={[{ name: 'How to export your data from Whatsapp' }]}
+            items={[{ name: 'How to export your data from WhatsApp' }]}
           />
         </div>
 
         <div className="prose md:prose-xl mx-auto">
-          <h1>How to export your data from Whatsapp</h1>
+          <h1>How to export your data from WhatsApp</h1>
 
           <p>
             With WhatsApp trying to merge your data with Facebook, now is the
             right time to pull the plug and{' '}
-            <Link href="/how-to-delete-your-whatsapp-account">
-              <a className="hover:text-green-400">
-                delete your WhatsApp account
-              </a>
-            </Link>
+            <a
+              href="https://faq.whatsapp.com/android/account-and-profile/how-to-delete-your-account/?lang=en"
+              className="hover:text-blue-500"
+            >
+              delete your WhatsApp account
+            </a>
             .
           </p>
 
@@ -77,8 +78,8 @@ export default function ExportTuto() {
 
             <div className="bg-yellow-50 border-l-8 border-yellow-400 px-8 py-4">
               <p>
-                This is about personal preferences but we strongly recommand{' '}
-                <b>not</b> using email or platform you don't trust.
+                This is about personal preferences but we strongly recommend to{' '}
+                <b>not</b> use email or platform you don't trust.
               </p>
 
               <p>
@@ -88,11 +89,43 @@ export default function ExportTuto() {
               </p>
             </div>
 
-            {/* <p>On iPhone, we recommand to use </p> */}
-            <h3>Recommanded method on iPhone</h3>
+            <p>TODO</p>
+          </div>
 
-            {/* <p>On Android, we recommand to use </p> */}
-            <h3>Recommanded method on Android</h3>
+          <div>
+            <h2>Read your data</h2>
+
+            <div>
+              <h3>Directly from the files</h3>
+
+              <p>
+                You can read your data directly by opening the file{' '}
+                <code>_chat.txt</code> and should look like something like this:
+              </p>
+
+              <pre>
+                <code>
+                  [05/04/2019 08:06:23] Me: Hello!
+                  <br />
+                  [05/04/2019 08:20:40] Friend: Hello, how are you?
+                  <br />
+                  [05/04/2019 08:21:43] &lt;attached: photo.png&gt;
+                </code>
+              </pre>
+            </div>
+
+            <div>
+              <h3>Using our explorer</h3>
+
+              <p>
+                If you need something more readable, we created a special app to
+                ease going throught your WhatsApp history.
+              </p>
+
+              <Link href="/explorer">
+                <a>No More WhatsApp Explorer</a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

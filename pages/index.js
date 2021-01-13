@@ -7,6 +7,23 @@ export default function Home() {
       <div className="prose md:prose-xl px-4 mx-auto py-20">
         <h1 className="text-center">🙅 No More WhatsApp</h1>
 
+        <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center items-baseline my-16">
+          <Link href="/explorer">
+            <button
+              type="button"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+            >
+              Explorer
+            </button>
+          </Link>
+
+          <Link href="/how-to-export-your-data-from-whatsapp">
+            <a className="hover:text-blue-500">
+              How to export your data from WhatsApp
+            </a>
+          </Link>
+        </div>
+
         <p>
           Facebook is once again trying to step in and violate our privacy
           online in an attempt to monetize WhatsApp.
@@ -58,18 +75,14 @@ export default function Home() {
           </p>
 
           <p>
-            At{' '}
-            <a href="https://recodable.io" target="_blank">
-              Recodable
-            </a>
-            , we also created a web application to help you read your data after
+            We also created a web application to help you read your data after
             export. It's a simple tool that doesn't store any information and
             will be forever free to use so you can always access your data
             without sacrificing your privacy.
           </p>
 
           <Link href="/how-to-export-your-data-from-whatsapp">
-            <a className="hover:text-green-400">
+            <a className="hover:text-blue-500">
               Learn how to export your data now.
             </a>
           </Link>
@@ -93,7 +106,7 @@ export default function Home() {
           <a
             href="https://signal.org/download/"
             target="_blank"
-            className="hover:text-green-400"
+            className="hover:text-blue-500"
           >
             Download signal
           </a>
