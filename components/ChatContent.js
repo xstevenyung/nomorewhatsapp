@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 import Linkify from 'react-linkify';
+import { format } from 'date-fns';
 
 const ChatContext = createContext({ attachments: [] });
 
-export function Message({ authorName, content }) {
+export function Message({ authorName, content, createdAt }) {
   const { attachments, me } = useContext(ChatContext);
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
@@ -81,6 +82,12 @@ export function Message({ authorName, content }) {
               Sorry, your browser doesn't support embedded videos.
             </video>
           )}
+
+          <div className="text-xs fon-light text-gray-500 text-right">
+            <time dateTime={createdAt}>
+              {format(new Date(createdAt), 'PP p')}
+            </time>
+          </div>
         </div>
       </div>
     </div>

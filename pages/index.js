@@ -27,8 +27,11 @@ export default function Home() {
         <p>
           On the <b>8th of Febuary 2021</b>, Facebook reserve the right to close
           your WhatsApp account if you fail to accept their{' '}
-          <a href="https://www.whatsapp.com/legal/updates" target="_blank">
-            new terms and privacy policy
+          <a
+            href="https://www.whatsapp.com/legal/updates/privacy-policy/"
+            target="_blank"
+          >
+            new privacy policy update
           </a>
           .
         </p>

@@ -68,7 +68,7 @@ const reducer = (state, { type, payload }) => {
         if (index === 0 || !line) return null;
 
         const [, createdAt, authorName, content] = line.match(
-          /(\[.+\]) ([^\:]+)\:(.+)/,
+          /\[(.+)\] ([^\:]+)\:(.+)/,
         ) || [null, prevMessage.createdAt, prevMessage.authorName, line];
 
         if (!loadedChat.participants.includes(authorName)) {
