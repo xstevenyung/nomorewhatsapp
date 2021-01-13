@@ -84,7 +84,7 @@ export function Message({ authorName, content }) {
           )}
 
           {!!video && (
-            <video controls>
+            <video controls className="bg-cover w-80 h-80">
               <source src={video} type="video/mp4" />
               Sorry, your browser doesn't support embedded videos.
             </video>
