@@ -3341,6 +3341,11 @@ react-dropzone@^11.2.4:
     file-selector "^0.2.2"
     prop-types "^15.7.2"
 
+react-headless-notifier@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-headless-notifier/-/react-headless-notifier-0.1.4.tgz#eaf03c9adbf24eaecc373e6c1be9e0716e57f214"
+  integrity sha512-ODNW3EIFpYuQ/2/Wd4BW6tWa1AJhCBYrp4QFsNi0BQNDdF6UnQgRybmdz7S0PgNPEXFpan0f7Sni/PR1SEfYiA==
+
 react-is@16.13.1, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

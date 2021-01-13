@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import groupBy from 'lodash.groupby';
+import { useNotifier } from 'react-headless-notifier';
+import { DangerNotification } from './Notification';
 
 const ExplorerContext = createContext({});
 
@@ -15,24 +17,35 @@ const reducer = (state, { type, payload }) => {
         .split('/')
         .filter((v) => !!v)
         .pop();
-      return dirName.replace('WhatsApp Chat - ', '');
+      // Handle if people upload just the `_chat.txt` file instead of a folder
+      return dirName ? dirName.replace('WhatsApp Chat - ', '') : 'Untitled';
     });
 
-    const newChats = Object.entries(newFiles).map(([key, files]) => {
-      const chatFile = files.find(({ name }) => name === '_chat.txt');
+    const newChats = Object.entries(newFiles)
+      .map(([key, files]) => {
+        const chatFile = files.find(({ name }) => name === '_chat.txt');
 
-      const attachmentFiles = files.filter(({ name }) => name !== '_chat.txt');
+        if (!chatFile) {
+          throw new Error(
+            `Couldn't find a file "_chat.txt", are you sure this is the right folder?`,
+          );
+        }
 
-      const chat = {
-        name: key,
-        messages: null,
-        file: chatFile,
-        attachments: attachmentFiles,
-        participants: [],
-      };
+        const attachmentFiles = files.filter(
+          ({ name }) => name !== '_chat.txt',
+        );
 
-      return chat;
-    });
+        const chat = {
+          name: key,
+          messages: null,
+          file: chatFile,
+          attachments: attachmentFiles,
+          participants: [],
+        };
+
+        return chat;
+      })
+      .filter((v) => v);
 
     return [...state, ...newChats];
   }
@@ -70,7 +83,17 @@ const reducer = (state, { type, payload }) => {
 };
 
 function ExplorerContextProvider({ children }) {
-  const [chats, dispatchChat] = useReducer(reducer, []);
+  const { notify } = useNotifier();
+  const [chats, dispatchChat] = useReducer((state, ...args) => {
+    try {
+      return reducer(state, ...args);
+    } catch (e) {
+      notify(
+        <DangerNotification title="Something went wrong" message={e.message} />,
+      );
+      return state;
+    }
+  }, []);
 
   useEffect(() => {
     chats.forEach((chat) => {
