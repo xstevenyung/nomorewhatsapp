@@ -74,18 +74,43 @@ export default function Home() {
             data out of Facebook hands.
           </p>
 
-          <p>
-            We also created a web application to help you read your data after
-            export. It's a simple tool that doesn't store any information and
-            will be forever free to use so you can always access your data
-            without sacrificing your privacy.
-          </p>
-
           <Link href="/how-to-export-your-data-from-whatsapp">
             <a className="hover:text-blue-500">
               Learn how to export your data now.
             </a>
           </Link>
+
+          <div>
+            <h3>Read your data</h3>
+
+            <p>
+              After export, you can pretty easily read your data by opening{' '}
+              <code>_chat.txt</code> file.
+            </p>
+
+            <p>
+              If you need something more visual, we created a special app to
+              ease going through your WhatsApp chat history.
+            </p>
+
+            <div className="bg-blue-50 border-l-8 border-blue-400 px-8 py-2 mb-8">
+              <b>Disclaimer</b>
+
+              <p>
+                This tool is{' '}
+                <a href="https://github.com/" target="_blank">
+                  open-source
+                </a>{' '}
+                and free and will stay that way. We don't and will never store
+                any data from you with our explorer app or on No More WhatsApp
+                in general.
+              </p>
+            </div>
+
+            <Link href="/explorer">
+              <a className="hover:text-blue-500">No More WhatsApp Explorer</a>
+            </Link>
+          </div>
         </div>
 
         <div>

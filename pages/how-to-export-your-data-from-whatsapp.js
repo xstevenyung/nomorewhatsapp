@@ -19,7 +19,7 @@ export default function ExportTuto() {
             With WhatsApp trying to merge your data with Facebook, now is the
             right time to pull the plug and{' '}
             <a
-              href="https://faq.whatsapp.com/android/account-and-profile/how-to-delete-your-account/?lang=en"
+              href="https://faq.whatsapp.com/android/account-and-profile/how-to-delete-your-account/"
               className="hover:text-blue-500"
             >
               delete your WhatsApp account
@@ -89,7 +89,19 @@ export default function ExportTuto() {
               </p>
             </div>
 
-            <p>TODO</p>
+            <p>
+              If you can, try to transfer via bluetooth or local network
+              solutions.
+            </p>
+
+            <p>
+              As a last resort, we know it's not ideal but the best compromise
+              between ease and safety of your data is to store it on{' '}
+              <a href="https://drive.google.com/drive/" target="_blank">
+                Google Drive
+              </a>
+              .
+            </p>
           </div>
 
           <div>
@@ -109,7 +121,7 @@ export default function ExportTuto() {
                   <br />
                   [05/04/2019 08:20:40] Friend: Hello, how are you?
                   <br />
-                  [05/04/2019 08:21:43] &lt;attached: photo.png&gt;
+                  [05/04/2019 08:21:43] Me: &lt;attached: photo.png&gt;
                 </code>
               </pre>
             </div>
@@ -118,12 +130,26 @@ export default function ExportTuto() {
               <h3>Using our explorer</h3>
 
               <p>
-                If you need something more readable, we created a special app to
-                ease going throught your WhatsApp history.
+                If you need something more visual, we created a special app to
+                ease going through your WhatsApp chat history.
               </p>
 
+              <div className="bg-blue-50 border-l-8 border-blue-400 px-8 py-2 mb-8">
+                <b>Disclaimer</b>
+
+                <p>
+                  This tool is{' '}
+                  <a href="https://github.com/" target="_blank">
+                    open-source
+                  </a>{' '}
+                  and free and will stay that way. We don't and will never store
+                  any data from you with our explorer app or on No More WhatsApp
+                  in general.
+                </p>
+              </div>
+
               <Link href="/explorer">
-                <a>No More WhatsApp Explorer</a>
+                <a className="hover:text-blue-500">No More WhatsApp Explorer</a>
               </Link>
             </div>
           </div>

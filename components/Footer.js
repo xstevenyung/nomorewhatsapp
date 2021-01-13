@@ -40,7 +40,7 @@ function Footer() {
           </a>
         </div>
 
-        <div className="mt-8 md:mt-0 md:order-1">
+        <div className="mt-8 md:mt-0 md:order-1 flex gap-1">
           <span>Made by</span>
           <a href="https://twitter.com/hyiuen">@hyiuen</a>
           <span>under</span>
