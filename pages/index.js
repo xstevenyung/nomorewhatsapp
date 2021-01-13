@@ -13,66 +13,33 @@ export default function Home() {
               type="button"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
             >
-              Explorer
+              Go to Explorer App
             </button>
           </Link>
 
           <Link href="/how-to-export-your-data-from-whatsapp">
             <a className="hover:text-blue-500">
-              How to export your data from WhatsApp
+              Learn how to export your data from WhatsApp
             </a>
           </Link>
         </div>
 
         <p>
-          Facebook is once again trying to step in and violate our privacy
-          online in an attempt to monetize WhatsApp.
+          On the <b>8th of Febuary 2021</b>, Facebook reserve the right to close
+          your WhatsApp account if you fail to accept their{' '}
+          <a href="https://www.whatsapp.com/legal/updates" target="_blank">
+            new terms and privacy policy
+          </a>
+          .
         </p>
 
-        <p>
-          <b>On the 8th of febuary 2021</b>, Facebook is going to change it's
-          terms and privacy policy to collect your data and track your activity
-          on WhatsApp and sell those data to who ever will be willing to pay.
-        </p>
-
         <div>
-          <h3>What Facebook will be able to access</h3>
-
-          <ul>
-            <li>Who you talk with</li>
-            <li>How long have you been talking</li>
-            <li>Your contacts (if shared with WhatsApp)</li>
-            <li>Your phone number</li>
-            <li>Your profile</li>
-            <li>Your activity in general on WhatsApp</li>
-            <li>
-              Link your WhatsApp activity across all Facebook products for more
-              accurate marketing
-            </li>
-            <li>... and probably more</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>What it won't be able to access</h3>
-
-          <ul>
-            <li>Your messages</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2>Don't let your data be hostage!</h2>
+          <h2>Don't forget to export your data!</h2>
 
           <p>
-            On the 8th of Febuary 2021, Facebook reserve the right to close your
-            WhatsApp account if you fail to accept their new terms and privacy
-            policy.
-          </p>
-
-          <p>
-            That means you have until the 8th of Febuary 2021, to export your
-            data out of Facebook hands.
+            If you plan on leaving WhatsApp because of the new terms and privacy
+            policy, don't forget that it's possible to export your data out of
+            WhatsApp.
           </p>
 
           <Link href="/how-to-export-your-data-from-whatsapp">
@@ -91,7 +58,7 @@ export default function Home() {
 
             <p>
               If you need something more visual, we created a special app to
-              ease going through your WhatsApp chat history.
+              easily go through your exported WhatsApp data.
             </p>
 
             <div className="bg-blue-50 border-l-8 border-blue-400 px-8 py-2 mb-8">
@@ -109,18 +76,21 @@ export default function Home() {
             </div>
 
             <Link href="/explorer">
-              <a className="hover:text-blue-500">No More WhatsApp Explorer</a>
+              <a>No More WhatsApp Explorer</a>
             </Link>
           </div>
         </div>
 
         <div>
-          <h2>Signal, the perfect alternative to WhatsApp for privacy</h2>
+          <h2>
+            Signal, the perfect alternative to WhatsApp that respect your
+            privacy
+          </h2>
 
           <p>
-            Open source and created with privacy in mind. It's the most secure
-            messaging app you can find and endorced by giant in the privacy
-            space like Edward Snowden.
+            Open source and created with privacy in mind. It's the one of the
+            most secure messaging app you can find as it stores no personal data
+            and is endorced by giant in the privacy space like Edward Snowden.
           </p>
 
           <p>
@@ -129,12 +99,8 @@ export default function Home() {
             privacy online.
           </p>
 
-          <a
-            href="https://signal.org/download/"
-            target="_blank"
-            className="hover:text-blue-500"
-          >
-            Download signal
+          <a href="https://signal.org" target="_blank">
+            Download Signal
           </a>
         </div>
       </div>

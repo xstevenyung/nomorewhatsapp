@@ -4,5 +4,9 @@ a {
   @apply text-blue-500 underline hover:text-blue-600;
 }
 
+.prose a {
+  @apply hover:text-blue-500 !important;
+}
+
 @tailwind components;
 @tailwind utilities;
