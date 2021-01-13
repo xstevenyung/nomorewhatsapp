@@ -83,12 +83,12 @@ export function Message({ authorName, content }) {
             />
           )}
 
-          {/* {videos.map((video) => (
+          {!!video && (
             <video controls>
               <source src={video} type="video/mp4" />
               Sorry, your browser doesn't support embedded videos.
             </video>
-          ))} */}
+          )}
         </div>
       </div>
     </div>
