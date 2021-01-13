@@ -1,12 +1,16 @@
 import Navbar from '../components/Navbar';
 import ChatList from '../components/ChatList';
 import Chat from '../components/Chat';
-import { withApp, useApp, UPLOAD } from '../components/AppContext';
+import {
+  withExplorerContext,
+  useExplorer,
+  UPLOAD,
+} from '../components/ExplorerContext';
 import { useDropzone } from 'react-dropzone';
 import { useEffect, useState } from 'react';
 
 function Explorer() {
-  const { chats, dispatchChat } = useApp();
+  const { chats, dispatchChat } = useExplorer();
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
   });
@@ -50,4 +54,4 @@ function Explorer() {
   );
 }
 
-export default withApp(Explorer);
+export default withExplorerContext(Explorer);

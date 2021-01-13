@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import groupBy from 'lodash.groupby';
 
-const AppContext = createContext({});
+const ExplorerContext = createContext({});
 
 export const UPLOAD = 'upload';
 export const LOAD_CHAT = 'loadChat';
@@ -69,7 +69,7 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
-function AppContextProvider({ children }) {
+function ExplorerContextProvider({ children }) {
   const [chats, dispatchChat] = useReducer(reducer, []);
 
   useEffect(() => {
@@ -86,25 +86,25 @@ function AppContextProvider({ children }) {
   }, [chats]);
 
   return (
-    <AppContext.Provider value={{ chats, dispatchChat }}>
+    <ExplorerContext.Provider value={{ chats, dispatchChat }}>
       {children}
-    </AppContext.Provider>
+    </ExplorerContext.Provider>
   );
 }
 
-function useApp() {
-  return useContext(AppContext);
+function useExplorer() {
+  return useContext(ExplorerContext);
 }
 
-function withApp(Component) {
+function withExplorerContext(Component) {
   return (props) => {
     return (
-      <AppContextProvider>
+      <ExplorerContextProvider>
         <Component {...props} />
-      </AppContextProvider>
+      </ExplorerContextProvider>
     );
   };
 }
 
-export default AppContext;
-export { AppContextProvider, useApp, withApp };
+export default ExplorerContext;
+export { ExplorerContextProvider, useExplorer, withExplorerContext };
