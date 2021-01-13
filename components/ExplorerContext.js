@@ -25,6 +25,12 @@ const reducer = (state, { type, payload }) => {
       .map(([key, files]) => {
         const chatFile = files.find(({ name }) => name === '_chat.txt');
 
+        if (files.length === 1 && files[0].type === 'application/zip') {
+          throw new Error(
+            "Sorry, we don't support .zip files yet, please decompress your data",
+          );
+        }
+
         if (!chatFile) {
           throw new Error(
             `Couldn't find a file "_chat.txt", are you sure this is the right folder?`,
