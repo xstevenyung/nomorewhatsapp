@@ -5,7 +5,7 @@ import { withApp, useApp, UPLOAD } from '../components/AppContext';
 import { useDropzone } from 'react-dropzone';
 import { useEffect, useState } from 'react';
 
-function Application() {
+function Explorer() {
   const { chats, dispatchChat } = useApp();
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
@@ -50,4 +50,4 @@ function Application() {
   );
 }
 
-export default withApp(Application);
+export default withApp(Explorer);
