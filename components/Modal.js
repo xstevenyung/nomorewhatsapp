@@ -6,9 +6,7 @@ export default function Modal({ close }) {
       aria-modal="true"
       aria-labelledby="modal-headline"
     >
-      <div className="prose">
-        <p></p>
-      </div>
+      <div className="prose">{/* <p></p> */}</div>
     </div>
   );
 }

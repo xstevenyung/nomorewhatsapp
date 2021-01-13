@@ -60,8 +60,6 @@ function Footer() {
 function RecodableLogo(props) {
   return (
     <svg
-      // width={508}
-      // height={108}
       viewBox="0 0 508 108"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
