@@ -57,6 +57,7 @@ const reducer = (state, { type, payload }) => {
   }
 
   if (type === LOAD_CHAT) {
+    const newState = [...state];
     const { chat: loadedChat, data } = payload;
 
     // We store data of previous message to be able to handle multiline messages
@@ -80,11 +81,11 @@ const reducer = (state, { type, payload }) => {
       })
       .filter((v) => v);
 
-    const index = state.findIndex((chat) => chat.name === loadedChat.name);
+    const index = newState.findIndex((chat) => chat.name === loadedChat.name);
 
-    state[index] = loadedChat;
+    newState[index] = loadedChat;
 
-    return state;
+    return newState;
   }
 };
 

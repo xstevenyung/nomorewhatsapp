@@ -7,22 +7,18 @@ import {
   UPLOAD,
 } from '../components/ExplorerContext';
 import { useDropzone } from 'react-dropzone';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 function Explorer() {
   const { chats, dispatchChat } = useExplorer();
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
   });
-  const [selectedChatIndex, setSelectedChatIndex] = useState(null);
-  const selectedChat = chats[selectedChatIndex];
-
-  // Load first uploaded chat by default
-  useEffect(() => {
-    if (!selectedChatIndex && chats.length > 0) {
-      setSelectedChatIndex(0);
-    }
-  }, [chats, selectedChatIndex]);
+  const [selectedChatIndex, setSelectedChatIndex] = useState(0);
+  const selectedChat = useMemo(() => chats[selectedChatIndex], [
+    chats,
+    selectedChatIndex,
+  ]);
 
   return (
     <div
