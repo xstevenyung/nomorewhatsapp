@@ -7,18 +7,35 @@ import {
   UPLOAD,
 } from '../components/ExplorerContext';
 import { useDropzone } from 'react-dropzone';
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { withModalContext } from '../components/ModalContext';
+import { useNotifier, positions } from 'react-headless-notifier';
+import PrivacyDisclaimer from '../components/PrivacyDisclaimer';
+import Link from 'next/link';
 
 function Explorer() {
   const { chats, dispatchChat } = useExplorer();
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
   });
+  const { notify } = useNotifier();
   const [selectedChatIndex, setSelectedChatIndex] = useState(0);
   const selectedChat = useMemo(() => chats[selectedChatIndex], [
     chats,
     selectedChatIndex,
   ]);
+
+  useEffect(() => {
+    notify(
+      <div className="max-w-lg shadow-lg">
+        <PrivacyDisclaimer />
+      </div>,
+      {
+        position: positions.BOTTOM,
+        duration: 60000,
+      },
+    );
+  }, []);
 
   return (
     <div
@@ -43,11 +60,36 @@ function Explorer() {
         />
       </div>
 
-      <div className="flex flex-col h-full w-full bg-white px-4 pt-24 relative">
-        {!!selectedChat && <Chat {...selectedChat} />}
-      </div>
+      {!chats.length && (
+        <div className="flex flex-col h-full w-full bg-white px-4 pt-24 relative items-center justify-center">
+          <div className="max-w-lg">
+            <p className="text-2xl font-semibold mb-2">
+              There is nothing here <i>yet</i>
+            </p>
+
+            <p className="mb-4">
+              Drag and drop your history directory or select by browsing your
+              files
+            </p>
+
+            <p>
+              If you don't know how to export your WhatsApp data, you can check
+              out our article{' '}
+              <Link href="/how-to-export-your-data-from-whatsapp">
+                <a>"How to export your data from WhatsApp"</a>
+              </Link>
+            </p>
+          </div>
+        </div>
+      )}
+
+      {!!chats.length && (
+        <div className="flex flex-col h-full w-full bg-white px-4 pt-24 relative">
+          {!!selectedChat && <Chat {...selectedChat} />}
+        </div>
+      )}
     </div>
   );
 }
 
-export default withExplorerContext(Explorer);
+export default withModalContext(withExplorerContext(Explorer));

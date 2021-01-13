@@ -94,6 +94,8 @@ export default function ChatList({
       </div> */}
       <div className="h-full relative pt-2">
         <div className="flex flex-col divide-y h-full overflow-y-auto -mx-4">
+          {!chats.length && <p className="text-center">No chats...</p>}
+
           {chats.map(({ name }, index) => (
             <button
               key={name}
