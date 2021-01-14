@@ -10,7 +10,7 @@ import { useDropzone } from 'react-dropzone';
 import { useState, useMemo, useEffect } from 'react';
 import { withModalContext } from '../components/ModalContext';
 import { useNotifier, positions } from 'react-headless-notifier';
-import PrivacyDisclaimer from '../components/PrivacyDisclaimer';
+import PrivacyDisclaimerNotification from '../components/PrivacyDisclaimerNotification';
 import Link from 'next/link';
 
 function Explorer() {
@@ -26,15 +26,10 @@ function Explorer() {
   ]);
 
   useEffect(() => {
-    notify(
-      <div className="max-w-lg shadow-lg">
-        <PrivacyDisclaimer />
-      </div>,
-      {
-        position: positions.BOTTOM,
-        duration: 60000,
-      },
-    );
+    notify(<PrivacyDisclaimerNotification />, {
+      position: positions.BOTTOM,
+      duration: 60000,
+    });
   }, []);
 
   return (
