@@ -153,6 +153,17 @@ export default function ExportTuto() {
               </Link>
             </div>
           </div>
+
+          <div>
+            <h2>Need some help to export your data?</h2>
+            <p>
+              Send me a tweet or a DM{' '}
+              <a href="https://twitter.com/hyiuen" target="_blank">
+                @hyiuen
+              </a>{' '}
+              and I would be happy to help.
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
