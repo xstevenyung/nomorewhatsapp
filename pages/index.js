@@ -7,7 +7,7 @@ export default function Home() {
       <div className="prose md:prose-xl px-4 mx-auto py-20">
         <h1 className="text-center">🙅 No More WhatsApp</h1>
 
-        <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center items-baseline my-16">
+        <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center items-center md:items-baseline my-16">
           <Link href="/explorer">
             <button
               type="button"
