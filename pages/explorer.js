@@ -18,7 +18,7 @@ function Explorer() {
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
   });
-  const { notify } = useNotifier();
+  const { notify, dismissAll } = useNotifier();
   const [selectedChatIndex, setSelectedChatIndex] = useState(0);
   const selectedChat = useMemo(() => chats[selectedChatIndex], [
     chats,
@@ -30,6 +30,7 @@ function Explorer() {
       position: positions.BOTTOM,
       duration: 60000,
     });
+    return dismissAll;
   }, []);
 
   return (
