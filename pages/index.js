@@ -85,26 +85,68 @@ export default function Home() {
         </div>
 
         <div>
-          <h2>
-            Signal, the perfect alternative to WhatsApp that respect your
-            privacy
-          </h2>
+          <h2>Alternative that respect your privacy</h2>
 
-          <p>
-            Open source and created with privacy in mind. It's the one of the
-            most secure messaging app you can find as it stores no personal data
-            and is endorced by giant in the privacy space like Edward Snowden.
-          </p>
+          <p>Keep in mind we have no affiliation with the alternative below.</p>
 
-          <p>
-            It's important to note that we have no affiliation with Signal
-            whatsoever, we just really love their constant effort to improve
-            privacy online.
-          </p>
+          <div>
+            <h3>1. Signal</h3>
 
-          <a href="https://signal.org" target="_blank">
-            Download Signal
-          </a>
+            <p>
+              Open source and created with privacy in mind. It's the one of the
+              most secure messaging app you can find as it stores no personal
+              data and is endorced by giant in the privacy space like Edward
+              Snowden.
+            </p>
+
+            <a href="https://signal.org" target="_blank">
+              Download Signal
+            </a>
+          </div>
+
+          <div>
+            <h3>2. Wire</h3>
+
+            <p>
+              One main advantage Wire has over Signal is the fact that it's
+              based in EU and is protected by European Law compare to Signal
+              which is based in the US. Besides of that, the features and level
+              of privacy are relatively similar.
+            </p>
+
+            <a href="https://wire.com/" target="_blank">
+              Download Wire
+            </a>
+          </div>
+
+          <div>
+            <h3>3. Telegram</h3>
+
+            <p>
+              Telegram is encrypted end-to-end and offers a cloud-based solution
+              which means your data are store on a server unlike Wire and
+              Signal, it allows to have easier synchronisation across multiple
+              device.
+            </p>
+
+            <a href="https://telegram.org/" target="_blank">
+              Download Telegram
+            </a>
+          </div>
+
+          <div>
+            <h3>4. Any application not owned by Facebook</h3>
+
+            <p>
+              Not that anybody trusted Facebook with our data before that
+              privacy policy update.
+            </p>
+
+            <p>
+              But if your goal is to have any privacy online, you should not use
+              any Facebook product. Period.
+            </p>
+          </div>
         </div>
       </div>
 
