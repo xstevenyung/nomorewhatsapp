@@ -65,12 +65,13 @@ function Explorer() {
             </p>
 
             <div>
-              <p className="mb-4 flex gap-1">
-                Drag and drop your history directory or{' '}
+              <div className="mb-4 flex gap-1 flex-col lg:flex-row">
+                <span>Drag and drop your history directory</span>
+                <span>or</span>
                 <UploadButton className="underline text-blue-500 hover:text-blue-600 font-semibold">
                   select by browsing your files
                 </UploadButton>
-              </p>
+              </div>
             </div>
 
             <p>

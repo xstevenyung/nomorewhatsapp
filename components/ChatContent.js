@@ -11,6 +11,7 @@ export function Message({ authorName, content, createdAt }) {
   const [video, setVideo] = useState(null);
 
   const [file, setFile] = useState(null);
+  const [hasAttachment, setHasAttachment] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -36,6 +37,7 @@ export function Message({ authorName, content, createdAt }) {
   const text = useMemo(() => {
     const regex = /\<attached: (.+)\>/;
     const [, fileName] = regex.exec(content) || [];
+    setHasAttachment(!!fileName);
     const file = attachments.find((file) => file.name === fileName);
 
     setFile(file);
@@ -66,6 +68,8 @@ export function Message({ authorName, content, createdAt }) {
           }`}
         >
           <div className="font-bold">{authorName}</div>
+
+          {hasAttachment && !file && <div>Media not found</div>}
 
           {!!text && <Linkify>{text}</Linkify>}
 
@@ -103,7 +107,10 @@ function SelectMeForm({ participants, onSelect: handleSelect }) {
         handleSelect(me);
       }}
     >
-      <label for="location" className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="location"
+        className="block text-sm font-medium text-gray-700"
+      >
         Who are you in the chat?
       </label>
 
