@@ -67,12 +67,9 @@ function Explorer() {
             <div>
               <div className="mb-4 flex gap-1 flex-col lg:flex-row">
                 <span>
-                  Drag and drop your WhatsApp chat directory/_chat.txt file
+                  Drag and drop your WhatsApp chat directory or{' '}
+                  <code>_chat.txt</code> file to visualize it.
                 </span>
-                <span>or</span>
-                <UploadButton className="underline text-blue-500 hover:text-blue-600 font-semibold">
-                  browse your files
-                </UploadButton>
               </div>
             </div>
 
