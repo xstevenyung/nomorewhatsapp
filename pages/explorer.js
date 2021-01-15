@@ -75,7 +75,7 @@ function Explorer() {
 
             <p>
               If you don't know how to export your WhatsApp data, you can check
-              out our article{' '}
+              out{' '}
               <Link href="/how-to-export-your-data-from-whatsapp">
                 <a className="font-semibold">
                   "How to export your data from WhatsApp"

@@ -2,10 +2,13 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 import Linkify from 'react-linkify';
 import { format } from 'date-fns';
+import { useModal } from './ModalContext';
+import Modal from './Modal';
 
 const ChatContext = createContext({ attachments: [] });
 
 export function Message({ authorName, content, createdAt }) {
+  const { open } = useModal();
   const { attachments, me } = useContext(ChatContext);
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
@@ -75,6 +78,13 @@ export function Message({ authorName, content, createdAt }) {
 
           {!!image && (
             <div
+              onClick={() =>
+                open(
+                  <Modal>
+                    <img src={image} />
+                  </Modal>,
+                )
+              }
               style={{ backgroundImage: `url(${image})` }}
               className="bg-cover w-80 h-80"
             />

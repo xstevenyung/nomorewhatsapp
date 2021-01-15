@@ -35,7 +35,7 @@ export default function Navbar() {
 
         <li>
           <a href="#" className="flex items-center">
-            <span className="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+            <span className="flex items-center justify-center text-indigo-100 bg-indigo-700 h-12 w-12 rounded-2xl">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -54,7 +54,7 @@ export default function Navbar() {
           </a>
         </li>
 
-        <li>
+        {/* <li>
           <a href="#" className="flex items-center">
             <span className="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
               <svg
@@ -79,7 +79,7 @@ export default function Navbar() {
               </svg>
             </span>
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
