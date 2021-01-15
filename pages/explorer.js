@@ -12,10 +12,11 @@ import { withModalContext } from '../components/ModalContext';
 import { useNotifier, positions } from 'react-headless-notifier';
 import PrivacyDisclaimerNotification from '../components/PrivacyDisclaimerNotification';
 import Link from 'next/link';
+import UploadButton from '../components/UploadButton';
 
 function Explorer() {
   const { chats, dispatchChat } = useExplorer();
-  const { getRootProps, isDragActive } = useDropzone({
+  const { getRootProps, isDragActive, getInputProps } = useDropzone({
     onDrop: (files) => dispatchChat({ type: UPLOAD, payload: files }),
   });
   const { notify, dismissAll } = useNotifier();
@@ -63,10 +64,14 @@ function Explorer() {
               There is nothing here <i>yet</i>
             </p>
 
-            <p className="mb-4">
-              Drag and drop your history directory or select by browsing your
-              files
-            </p>
+            <div>
+              <p className="mb-4 flex gap-1">
+                Drag and drop your history directory or{' '}
+                <UploadButton className="underline text-blue-500 hover:text-blue-600 font-semibold">
+                  select by browsing your files
+                </UploadButton>
+              </p>
+            </div>
 
             <p>
               If you don't know how to export your WhatsApp data, you can check

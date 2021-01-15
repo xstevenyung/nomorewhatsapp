@@ -1,3 +1,5 @@
+import UploadButton from './UploadButton';
+
 function ChatItem({ name, active }) {
   return (
     <div
@@ -51,8 +53,9 @@ export default function ChatList({
             </button>
           ))}
         </div>
+
         <div className="absolute bottom-0 right-0 mr-2">
-          <button className="flex items-center justify-center shadow-sm h-10 w-10 bg-red-500 text-white rounded-full">
+          <UploadButton className="flex items-center justify-center shadow-sm h-10 w-10 bg-red-500 text-white rounded-full">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -67,7 +70,7 @@ export default function ChatList({
                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"
               ></path>
             </svg>
-          </button>
+          </UploadButton>
         </div>
       </div>
     </div>
