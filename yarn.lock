@@ -166,6 +166,13 @@
   resolved "https://registry.yarnpkg.com/@recodable/prettier-config/-/prettier-config-0.0.1.tgz#290e13534cae0b5eaa6aabc0c39756696f86c1fb"
   integrity sha512-oUVWlzrR46Ucx/VzER0Wh5IzBXsXMJ8f9XqdOLpfn6Tw9XyETrqSPIVd59fc1ED1ykX/OtzxotJlxib/tDvaMg==
 
+"@tailwindcss/forms@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.2.1.tgz#3244b185854fae1a7cbe8d2456314d8b2d98cf43"
+  integrity sha512-czfvEdY+J2Ogfd6RUSr/ZSUmDxTujr34M++YLnp2cCPC3oJ4kFvFMaRXA6cEXKw7F1hJuapdjXRjsXIEXGgORg==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 "@tailwindcss/typography@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.3.1.tgz#253ce580c8e06b6163d9a288edd24f25e1d0dfee"
@@ -2505,6 +2512,11 @@ mimic-response@^3.1.0:
   resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-3.1.0.tgz#2d1d59af9c1b129815accc2c46a022a5ce1fa3c9"
   integrity sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==
 
+mini-svg-data-uri@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.2.3.tgz#e16baa92ad55ddaa1c2c135759129f41910bc39f"
+  integrity sha512-zd6KCAyXgmq6FV1mR10oKXYtvmA9vRoB6xPSTUJTbFApCtkefDnYueVR1gkof3KcdLZo1Y8mjF2DFmQMIxsHNQ==
+
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
@@ -3346,10 +3358,10 @@ react-dropzone@^11.2.4:
     file-selector "^0.2.2"
     prop-types "^15.7.2"
 
-react-headless-notifier@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/react-headless-notifier/-/react-headless-notifier-0.1.5.tgz#244aba9b942166fad07c7e4fd60819068004d8f6"
-  integrity sha512-+uuXcXkB8xeUnaWgrIOZldA1QqlR+xaR0OIRkeOp8hKYuaCnrsYHKFLdOM/XNRQceK5rG99Sjb/DPO2WWBwIJg==
+react-headless-notifier@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/react-headless-notifier/-/react-headless-notifier-0.1.6.tgz#757ddfd33a26ed10276846240be1ea5f0b4c0f9c"
+  integrity sha512-idgAYF2AYW8cZN9cfaPvSUyeUrGyLoOT5RyKj77MQ1S/zCIv73Wajgp3fVxJkA2exBxGiQbo8Ng/p8ZnQUz3wg==
 
 react-is@16.13.1, react-is@^16.8.1:
   version "16.13.1"

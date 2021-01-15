@@ -103,15 +103,31 @@ function SelectMeForm({ participants, onSelect: handleSelect }) {
         handleSelect(me);
       }}
     >
-      <select onChange={(e) => setMe(e.target.value)}>
-        {participants.map((participant) => (
-          <option key={participant} value={participant}>
-            {participant}
-          </option>
-        ))}
-      </select>
+      <label for="location" className="block text-sm font-medium text-gray-700">
+        Who are you in the chat?
+      </label>
 
-      <button type="submit">Ok</button>
+      <div className="flex gap-6">
+        <select
+          id="location"
+          name="location"
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          onChange={(e) => setMe(e.target.value)}
+        >
+          {participants.map((participant) => (
+            <option key={participant} value={participant}>
+              {participant}
+            </option>
+          ))}
+        </select>
+
+        <button
+          type="submit"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Ok
+        </button>
+      </div>
     </form>
   );
 }
@@ -136,8 +152,6 @@ export default function ChatContent({
   if (!me) {
     return (
       <div className="h-full w-full flex flex-col justify-center items-center">
-        <p>Who are you in the conversation?</p>
-
         <SelectMeForm participants={participants} onSelect={setMe} />
       </div>
     );

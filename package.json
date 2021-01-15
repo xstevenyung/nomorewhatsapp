@@ -10,6 +10,7 @@
   },
   "prettier": "@recodable/prettier-config",
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.2.1",
     "date-fns": "^2.16.1",
@@ -19,7 +20,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-dropzone": "^11.2.4",
-    "react-headless-notifier": "^0.1.5",
+    "react-headless-notifier": "^0.1.6",
     "react-linkify": "^1.0.0-alpha",
     "react-virtuoso": "^1.2.5",
     "tailwindcss": "^2.0.2"
