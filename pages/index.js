@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { format } from 'date-fns';
 
 export default function Home() {
   return (
@@ -24,9 +25,30 @@ export default function Home() {
           </Link>
         </div>
 
+        <div className="bg-blue-50 border-l-8 border-blue-400 px-8 py-2 mb-8">
+          <b>Update ({format(new Date('2021-01-16'), 'PP')})</b>
+
+          <p>
+            WhatsApp is moving back the date on which people will be asked to
+            review and accept the terms.
+          </p>
+
+          <p>
+            You have until <b>15th of May 2021</b> instead of 8th of Febuary.
+          </p>
+
+          <a
+            href="https://blog.whatsapp.com/giving-more-time-for-our-recent-update"
+            target="_blank"
+          >
+            Read more here
+          </a>
+        </div>
+
         <p>
-          On the <b>8th of Febuary 2021</b>, Facebook reserve the right to close
-          your WhatsApp account if you fail to accept their{' '}
+          On the <b className="line-through">8th of Febuary 2021</b>{' '}
+          <b>15th of May 2021</b>, Facebook reserve the right to close your
+          WhatsApp account if you fail to accept their{' '}
           <a
             href="https://www.whatsapp.com/legal/updates/privacy-policy/"
             target="_blank"
