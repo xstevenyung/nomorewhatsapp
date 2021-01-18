@@ -66,8 +66,6 @@ const reducer = (state, { type, payload }) => {
     loadedChat.messages = data
       .split('\n')
       .map((line, index) => {
-        if (index === 0 || !line) return null;
-
         let found;
 
         found = line.match(/\[(.+)\] ([^\:]+)\:(.+)/);
