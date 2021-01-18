@@ -88,7 +88,7 @@ function Explorer() {
 
       {!!chats.length && (
         <div className="flex flex-col h-full w-full bg-white px-4 pt-24 relative">
-          {!!selectedChat && <Chat {...selectedChat} />}
+          {!!selectedChat && <Chat key={selectedChatIndex} {...selectedChat} />}
         </div>
       )}
     </div>
