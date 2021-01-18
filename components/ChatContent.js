@@ -61,16 +61,18 @@ export function Message({ authorName, content, createdAt }) {
           fromMe ? 'justify-start flex-row-reverse' : 'flex-row '
         }`}
       >
-        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0 uppercase">
-          {authorName.charAt(0)}
-        </div>
+        {!!authorName && (
+          <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0 uppercase">
+            {authorName.charAt(0)}
+          </div>
+        )}
 
         <div
           className={`relative mx-3 text-sm py-2 px-4 shadow rounded-xl ${
             fromMe ? 'bg-indigo-100' : 'bg-white'
           }`}
         >
-          <div className="font-bold">{authorName}</div>
+          {!!authorName && <div className="font-bold">{authorName}</div>}
 
           {hasAttachment && !file && <div>Media not found</div>}
 
@@ -98,9 +100,7 @@ export function Message({ authorName, content, createdAt }) {
           )}
 
           <div className="text-xs fon-light text-gray-500 text-right">
-            <time dateTime={createdAt}>
-              {format(new Date(createdAt), 'PP p')}
-            </time>
+            <time dateTime={createdAt}>{createdAt}</time>
           </div>
         </div>
       </div>

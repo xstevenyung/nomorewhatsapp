@@ -61,15 +61,32 @@ const reducer = (state, { type, payload }) => {
     const { chat: loadedChat, data } = payload;
 
     // We store data of previous message to be able to handle multiline messages
-    let prevMessage;
+    let prevMessage = { createdAt: '', authorName: '', content: '' };
+
     loadedChat.messages = data
       .split('\n')
       .map((line, index) => {
         if (index === 0 || !line) return null;
 
-        const [, createdAt, authorName, content] = line.match(
-          /\[(.+)\] ([^\:]+)\:(.+)/,
-        ) || [null, prevMessage.createdAt, prevMessage.authorName, line];
+        let found;
+
+        found = line.match(/\[(.+)\] ([^\:]+)\:(.+)/);
+
+        // if the message is a system message from whatsapp (group created message, etc.)
+        if (!found) {
+          found = line.match(/\[(.+)\] (.+)/);
+          if (found) {
+            const [, createdAt, content] = found;
+            return { createdAt, content, authorName: null };
+          }
+        }
+
+        // If the message is multi-line
+        if (!found) {
+          found = [null, prevMessage.createdAt, prevMessage.authorName, line];
+        }
+
+        const [, createdAt, authorName, content] = found;
 
         if (!loadedChat.participants.includes(authorName)) {
           loadedChat.participants.push(authorName);
