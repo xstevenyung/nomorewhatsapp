@@ -76,7 +76,22 @@ export function Message({ authorName, content, createdAt }) {
 
           {hasAttachment && !file && <div>Media not found</div>}
 
-          {!!text && <Linkify>{text}</Linkify>}
+          {!!text && (
+            <Linkify
+              componentDecorator={(href, text, key) => (
+                <a
+                  href={href}
+                  key={key}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {text}
+                </a>
+              )}
+            >
+              {text}
+            </Linkify>
+          )}
 
           {!!image && (
             <div
