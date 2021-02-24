@@ -41,7 +41,17 @@ function Footer() {
         </div>
 
         <div className="mt-8 md:mt-0 md:order-1 flex gap-1">
-          <span>Made by</span>
+          <p>
+            Made by{' '}
+            <a
+              href="https://recodable.io/"
+              target="_blank"
+              class="text-blue-500 hover:text-green-400 font-bold"
+            >
+              Recodable<span class="text-green-300 text-xl">.</span>
+            </a>
+          </p>
+          {/* <span>Made by</span>
           <a href="https://twitter.com/hyiuen">@hyiuen</a>
           <span>under</span>
           <a
@@ -50,7 +60,7 @@ function Footer() {
             className="text-center text-base text-gray-400"
           >
             <RecodableLogo className="h-8" />
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>
